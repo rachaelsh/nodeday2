@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="beerApp">
+  <head>
+    <meta charset="utf-8">
+    <title>beer app</title>
+    <link rel="stylesheet" href="style.css" >
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  </head>
+  <body ng-controller="mainCtrl">
+    <div class="container">
+    <h1>BEER APP YAY</>
+      <hr/>
+      <button type="button" ng-click="getBeer()">GET THE BEERS</button><!--gets the beer-->
+
+
+
+<div class="beerbox">
+  <form ng-submit="postNewBeer(newBeer)"><!--posts new beers-->
+    <input type="text" ng-model="newBeer.name" placeholder="put new beers"><!--model instantiates  $scope.newBeer in mainCtrl as a variable.  you see it called as the argument in postNewBeer here, and that's wher it's looking regardless the name in mainCtrl-->
+  </form>
+
+      <div ng-repeat="oneBeer in allTheBeer"><!--where the beers from your getBeer() lives-->
+        <h2>
+          <span ng-dblclick="readyToUpdate = true" ng-hide="readyToUpdate">{{oneBeer.name}}</span><!--span is for edit, so when you click this span specifically, double click. when you double click, you FIRST DEFINE YOUR FUNCTION as true (default is falsy) THEN, you call that function inside ng-hide, which removes this whole line and makes room for the input form below, whenre you edit:-->
+          <form ng-show="readyToUpdate" ng-submit="putTheBeer(oneBeer)"><!--ng-submit here is where your put gets called-->
+            <input type="text" ng-model="oneBeer.name">
+        </form>
+
+          <button type="button" ng-hide="readyToUpdate" ng-click="deleteTheBeer(oneBeer)">DRINK</button><!--here, oneBeer represents the index in the array of ng-repeat.  ng-hide HAPPENS when readyToUpdate is called by the double click on your repeat field-->
+        </h2>
+
+      </div>
+</div>
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+    <script src="app.js" type="text/javascript"></script>
+    <script src="mainCtrl.js" type="text/javascript"></script>
+    <script src="mainServ.js" type="text/javascript"></script>
+  </body>
+</html>
