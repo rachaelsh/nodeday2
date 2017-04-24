@@ -32,12 +32,13 @@ this.destroyTheBeer = function(beerToDestroy){//again, just inserting an argumen
 this.changeTheBeer = function(beerToChange){
   return $http({
     method: "PUT",
-    url: "/beer/"+beerToChange.key,
+    url: "/beer/"+beerToChange.key,//ask about this?  it represents req.params.id
+//     url: "/dogs/:id"
     data: beerToChange
   }).then(function(response){
     return response;
-  })
-}
+  });
+};
 
 
 

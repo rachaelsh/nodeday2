@@ -28,6 +28,7 @@ $scope.deleteTheBeer = function(beerToRemove){
 $scope.putTheBeer = function(beerToPut){
   mainServ.changeTheBeer(beerToPut)
   .then(function(response){
+    console.log(response);
     $scope.getBeer();
   })
 }
@@ -35,8 +36,6 @@ $scope.putTheBeer = function(beerToPut){
 
 });//end of ctrl
 
-
-//your controller is your controller
 
 
 //
